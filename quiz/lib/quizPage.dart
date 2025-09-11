@@ -1,41 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:quiz/landingPage.dart';
 
-void main() {
-  runApp(const QuizApp());
+class QuizPage extends StatefulWidget {
+  const QuizPage({super.key});
+
+  @override
+  State<QuizPage> createState() => _QuizPageState();
 }
 
-class QuizApp extends StatelessWidget {
-  const QuizApp({super.key});
-
+class _QuizPageState extends State<QuizPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          title: Row(
+        body: Scaffold(
+          body: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Quiz App',
-                style: GoogleFonts.bebasNeue(
-                  textStyle: const TextStyle(
+            children: const [
+              Center(
+                child: Text(
+                  'QUIZ PAGE',
+                  style: TextStyle(
                     fontSize: 36,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
                 ),
               ),
-              const SizedBox(width: 10),
-              const Icon(Icons.question_answer, color: Colors.white, size: 36),
             ],
           ),
           backgroundColor: Color.fromARGB(255, 255, 180, 51),
         ),
-        body: const Landingpage(),
       ),
     );
   }
