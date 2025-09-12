@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz/landingPage.dart';
 
 void main() {
@@ -13,30 +12,7 @@ class QuizApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Quiz App',
-                style: GoogleFonts.bebasNeue(
-                  textStyle: const TextStyle(
-                    fontSize: 36,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 10),
-              const Icon(Icons.question_answer, color: Colors.white, size: 36),
-            ],
-          ),
-          backgroundColor: Color.fromARGB(255, 255, 180, 51),
-        ),
-        body: const Landingpage(),
-      ),
+      home: Scaffold(body: const Landingpage()),
     );
   }
 }

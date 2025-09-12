@@ -16,8 +16,30 @@ class _LandingpageState extends State<Landingpage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Scaffold(
-          body: Column(
+        appBar: AppBar(
+          backgroundColor: Color(0xFF6DD5FA),
+          title: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Quiz App',
+                style: GoogleFonts.bebasNeue(
+                  textStyle: const TextStyle(
+                    fontSize: 36,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 10),
+              const Icon(Icons.question_answer, color: Colors.white, size: 36),
+            ],
+          ),
+        ),
+        body: Container(
+          decoration: BoxDecoration(gradient: gra),
+          child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -47,7 +69,6 @@ class _LandingpageState extends State<Landingpage> {
               ),
             ],
           ),
-          backgroundColor: Color.fromARGB(255, 255, 180, 51),
         ),
       ),
     );
@@ -61,3 +82,9 @@ Widget Navigate() {
     color: Colors.white,
   );
 }
+
+Gradient gra = LinearGradient(
+  colors: [Color(0xFF6DD5FA), Color(0xFF2980B9)],
+  begin: Alignment.topCenter,
+  end: Alignment.bottomCenter,
+);
