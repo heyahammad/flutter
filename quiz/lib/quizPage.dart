@@ -18,16 +18,19 @@ class _QuizPageState extends State<QuizPage> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               Center(
                 child: Text(
-                  'QUIZ PAGE',
+                  'whats your name?',
                   style: TextStyle(
                     fontSize: 36,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
                 ),
+              ),
+              Center(
+                child: ElevatedButton(onPressed: () {}, child: Text('')),
               ),
             ],
           ),
