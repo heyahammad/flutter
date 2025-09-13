@@ -15,7 +15,7 @@
 
 This repository showcases my journey and skills in mobile app development using Flutter. Each project is a standalone app with a unique UI and functionality.
 
-<img src="assets/mockup.png" alt="Mockup" width="300">
+<img src="assets/mockup.png" alt="Mockup" width="890">
 
 ---
 
