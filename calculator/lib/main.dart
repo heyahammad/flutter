@@ -51,7 +51,7 @@ class _Numpad extends State<Numpad> {
         body: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.purpleAccent, Colors.redAccent],
+              colors: [Colors.blue, Colors.white],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
@@ -125,11 +125,21 @@ class _Numpad extends State<Numpad> {
   }
 
   Widget button(String label) {
+    // Determine background color based on label
+    Color bgColor;
+    if (label.toLowerCase() == 'c') {
+      bgColor = const Color.fromARGB(150, 255, 82, 82);
+    } else if ('=/*+-'.contains(label)) {
+      bgColor = const Color.fromARGB(150, 64, 195, 255);
+    } else {
+      bgColor = const Color.fromARGB(150, 255, 255, 255);
+    }
+
     return FilledButton(
       onPressed: () => output(label),
       style: FilledButton.styleFrom(
         padding: const EdgeInsets.all(20),
-        backgroundColor: Color.fromARGB(150, 255, 255, 255),
+        backgroundColor: bgColor,
         foregroundColor: Colors.black,
         textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
