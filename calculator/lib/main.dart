@@ -11,7 +11,7 @@ class Numpad extends StatefulWidget {
 }
 
 class _Numpad extends State<Numpad> {
-  String out = '2';
+  String out = '0';
   void output(String label) {
     setState(() {
       if (label == "C") {
