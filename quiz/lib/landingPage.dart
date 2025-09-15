@@ -44,6 +44,10 @@ class _LandingpageState extends State<Landingpage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Center(
+                child: Image(image: AssetImage('assets/logo.png'), width: 260),
+              ),
+              SizedBox(height: 30),
+              Center(
                 child: Text(
                   'LETS START',
                   style: GoogleFonts.bebasNeue(
