@@ -22,6 +22,7 @@ class _LandingpageState extends State<Landingpage> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Image.asset('assets/image/logo.png'),
               Text(
                 'Quiz App',
                 style: GoogleFonts.bebasNeue(
