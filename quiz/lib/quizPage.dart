@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class QuizPage extends StatefulWidget {
@@ -10,6 +12,7 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   @override
   Widget build(BuildContext context) {
+    String name;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -29,8 +32,60 @@ class _QuizPageState extends State<QuizPage> {
                   ),
                 ),
               ),
+              SizedBox(height: 20),
+              Switch(
+                value: false,
+                onChanged: (bool? h) {
+                  print(h);
+                },
+              ),
+              SizedBox(height: 20),
               Center(
-                child: ElevatedButton(onPressed: () {}, child: Text('')),
+                child: Container(
+                  height: 40,
+                  width: 320,
+                  child: TextField(
+                    cursorColor: const Color.fromARGB(180, 255, 255, 255),
+                    cursorHeight: 20,
+                    obscureText: true,
+                    keyboardType: TextInputType.datetime,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(
+                          color: const Color.fromARGB(180, 255, 255, 255),
+                          width: 2.0,
+                        ),
+                      ),
+
+                      prefixIcon: Icon(
+                        Icons.verified_user,
+                        color: const Color.fromARGB(180, 255, 255, 255),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(
+                          color: const Color.fromARGB(180, 255, 255, 255),
+                          width: 2.0,
+                        ),
+                      ),
+                      labelStyle: TextStyle(
+                        color: Color.fromARGB(180, 255, 255, 255),
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      labelText: 'Name:',
+                      icon: Icon(
+                        Icons.people,
+                        color: Color.fromARGB(180, 255, 255, 255),
+                        size: 40,
+                      ),
+                    ),
+                    onChanged: (String val) {
+                      name = val;
+                    },
+                  ),
+                ),
               ),
             ],
           ),

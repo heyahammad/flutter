@@ -22,7 +22,6 @@ class _LandingpageState extends State<Landingpage> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset('assets/image/logo.png'),
               Text(
                 'Quiz App',
                 style: GoogleFonts.bebasNeue(
@@ -45,7 +44,11 @@ class _LandingpageState extends State<Landingpage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Center(
-                child: Image(image: AssetImage('assets/logo.png'), width: 260),
+                child: Image(
+                  image: AssetImage('assets/logo.png'),
+                  width: 260,
+                  color: Color.fromARGB(180, 255, 255, 255),
+                ),
               ),
               SizedBox(height: 30),
               Center(
