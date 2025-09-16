@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:quiz/ques.dart';
 
 class QuizPage extends StatefulWidget {
   const QuizPage({super.key});
@@ -10,9 +11,11 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+  String name = '';
+  String institute = '';
+  bool clicked = false;
   @override
   Widget build(BuildContext context) {
-    String name;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -23,32 +26,12 @@ class _QuizPageState extends State<QuizPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Center(
-                child: Text(
-                  'whats your name?',
-                  style: TextStyle(
-                    fontSize: 36,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              SizedBox(height: 20),
-              Switch(
-                value: false,
-                onChanged: (bool? h) {
-                  print(h);
-                },
-              ),
-              SizedBox(height: 20),
-              Center(
                 child: Container(
-                  height: 40,
+                  height: 50,
                   width: 320,
                   child: TextField(
                     cursorColor: const Color.fromARGB(180, 255, 255, 255),
                     cursorHeight: 20,
-                    obscureText: true,
-                    keyboardType: TextInputType.datetime,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
@@ -56,11 +39,6 @@ class _QuizPageState extends State<QuizPage> {
                           color: const Color.fromARGB(180, 255, 255, 255),
                           width: 2.0,
                         ),
-                      ),
-
-                      prefixIcon: Icon(
-                        Icons.verified_user,
-                        color: const Color.fromARGB(180, 255, 255, 255),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
@@ -76,15 +54,73 @@ class _QuizPageState extends State<QuizPage> {
                       ),
                       labelText: 'Name:',
                       icon: Icon(
-                        Icons.people,
+                        Icons.person,
+                        color: Color.fromARGB(180, 255, 255, 255),
+                        size: 40,
+                      ),
+                    ),
+                    style: TextStyle(color: Color.fromARGB(180, 255, 255, 255)),
+                    onChanged: (String val) {
+                      name = val;
+                    },
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
+              Center(
+                child: Container(
+                  height: 50,
+                  width: 320,
+                  child: TextField(
+                    cursorColor: const Color.fromARGB(180, 255, 255, 255),
+                    cursorHeight: 20,
+                    style: TextStyle(color: Color.fromARGB(180, 255, 255, 255)),
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(
+                          color: const Color.fromARGB(180, 255, 255, 255),
+                          width: 2.0,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(
+                          color: const Color.fromARGB(180, 255, 255, 255),
+                          width: 2.0,
+                        ),
+                      ),
+                      labelStyle: TextStyle(
+                        color: Color.fromARGB(180, 255, 255, 255),
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      labelText: 'Institute:',
+                      icon: Icon(
+                        Icons.school,
                         color: Color.fromARGB(180, 255, 255, 255),
                         size: 40,
                       ),
                     ),
                     onChanged: (String val) {
-                      name = val;
+                      institute = val;
                     },
                   ),
+                ),
+              ),
+              SizedBox(height: 20),
+              IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Ques()),
+                  );
+                },
+                icon: Icon(
+                  Icons.arrow_circle_right,
+                  size: 60,
+                  weight: 20,
+                  color: Color.fromARGB(180, 255, 255, 255),
                 ),
               ),
             ],

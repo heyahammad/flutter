@@ -28,12 +28,16 @@ class _LandingpageState extends State<Landingpage> {
                   textStyle: const TextStyle(
                     fontSize: 36,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 255, 255, 255),
                   ),
                 ),
               ),
               const SizedBox(width: 10),
-              const Icon(Icons.question_answer, color: Colors.white, size: 36),
+              const Icon(
+                Icons.question_answer,
+                color: Color.fromARGB(255, 255, 255, 255),
+                size: 36,
+              ),
             ],
           ),
         ),
@@ -58,7 +62,7 @@ class _LandingpageState extends State<Landingpage> {
                     textStyle: const TextStyle(
                       fontSize: 36,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Color.fromARGB(180, 255, 255, 255),
                     ),
                   ),
                 ),
@@ -85,9 +89,9 @@ class _LandingpageState extends State<Landingpage> {
 
 Widget Navigate() {
   return Icon(
-    Symbols.arrow_circle_right_rounded,
+    Icons.arrow_circle_right,
     size: 60,
-    color: Colors.white,
+    color: Color.fromARGB(180, 255, 255, 255),
   );
 }
 
