@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:quiz/ques.dart';
 
+String? name = 'default user';
+
 class QuizPage extends StatefulWidget {
   const QuizPage({super.key});
 
@@ -11,7 +13,6 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  String name = '';
   String institute = '';
   bool clicked = false;
   @override
@@ -113,7 +114,7 @@ class _QuizPageState extends State<QuizPage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Ques()),
+                    MaterialPageRoute(builder: (context) => const Ques1()),
                   );
                 },
                 icon: Icon(
