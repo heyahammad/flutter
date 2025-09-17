@@ -3,14 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:quiz/quizPage.dart';
 
-class Landingpage extends StatefulWidget {
+class Landingpage extends StatelessWidget {
   const Landingpage({super.key});
-
-  @override
-  State<Landingpage> createState() => _LandingpageState();
-}
-
-class _LandingpageState extends State<Landingpage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -73,7 +67,11 @@ class _LandingpageState extends State<Landingpage> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const QuizPage()),
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return QuizPage();
+                        },
+                      ),
                     );
                   },
                   icon: Navigate(),
