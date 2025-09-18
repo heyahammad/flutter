@@ -5,7 +5,7 @@ import 'package:quiz/quizPage.dart';
 import 'data/data.dart';
 import 'answer.dart';
 
-String? selected;
+List<String> answers = [];
 
 class Ques extends StatefulWidget {
   const Ques({super.key});
@@ -15,14 +15,14 @@ class Ques extends StatefulWidget {
 
 class _Ques extends State<Ques> {
   var quesNo = 0;
-
-  var answers = [];
+  var i = 0;
 
   void qusChange(String op) {
     setState(() {
+      answers.add(op);
+      i++;
       if (quesNo < data.length - 1) {
         quesNo++;
-        answers.add(op);
       }
     });
   }
@@ -59,13 +59,13 @@ class _Ques extends State<Ques> {
               return KustomButton(
                 option: options,
                 onTap: () {
-                  if (quesNo <= data.length) {
-                    qusChange(options);
-                  } else {
+                  qusChange(options);
+                  if (i > data.length - 1) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Answer(name: name),
+                        builder: (context) =>
+                            Answer(name: name, answers: answers),
                       ),
                     );
                   }
