@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:quiz/ques.dart';
 
-String? name = 'default user';
+String? name = 'Default User';
 
 class QuizPage extends StatefulWidget {
   const QuizPage({super.key});
