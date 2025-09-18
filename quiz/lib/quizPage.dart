@@ -114,13 +114,12 @@ class _QuizPageState extends State<QuizPage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Ques1()),
+                    MaterialPageRoute(builder: (context) => Ques()),
                   );
                 },
                 icon: Icon(
-                  Icons.arrow_circle_right,
+                  Icons.arrow_forward_ios_outlined,
                   size: 60,
-                  weight: 20,
                   color: Color.fromARGB(180, 255, 255, 255),
                 ),
               ),

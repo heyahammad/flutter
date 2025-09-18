@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:material_symbols_icons/symbols.dart';
 import 'package:quiz/quizPage.dart';
 
 class Landingpage extends StatelessWidget {
-  const Landingpage({super.key});
+  const Landingpage(this.startQuiz, {super.key});
+  final void Function() startQuiz;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -65,16 +66,13 @@ class Landingpage extends StatelessWidget {
               Center(
                 child: IconButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return QuizPage();
-                        },
-                      ),
-                    );
+                    startQuiz();
                   },
-                  icon: Navigate(),
+                  icon: Icon(
+                    Icons.arrow_forward_ios_outlined,
+                    size: 60,
+                    color: Color.fromARGB(180, 255, 255, 255),
+                  ),
                 ),
               ),
             ],
@@ -83,14 +81,6 @@ class Landingpage extends StatelessWidget {
       ),
     );
   }
-}
-
-Widget Navigate() {
-  return Icon(
-    Icons.arrow_circle_right,
-    size: 60,
-    color: Color.fromARGB(180, 255, 255, 255),
-  );
 }
 
 Gradient gra = LinearGradient(
