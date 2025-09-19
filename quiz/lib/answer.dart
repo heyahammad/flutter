@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz/main.dart';
 import 'package:quiz/summarypage.dart';
 import 'quizPage.dart';
 import 'data/data.dart';
@@ -69,6 +70,24 @@ class Answer extends StatelessWidget {
               ),
 
               SummaryPage(getSummary()),
+              SizedBox(height: 25),
+              ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => QuizApp()),
+                  );
+                  answers.clear();
+                },
+                icon: Icon(Icons.refresh, size: 25, color: Colors.black87),
+                label: Text(
+                  'Restart',
+                  style: GoogleFonts.poppins(
+                    color: Colors.black87,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
