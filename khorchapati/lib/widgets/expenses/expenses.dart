@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khorchapati/listexpenses.dart';
+import 'package:khorchapati/widgets/expenses/listexpenses.dart';
 import 'package:khorchapati/model/expense.dart';
 
 class Expenses extends StatefulWidget {

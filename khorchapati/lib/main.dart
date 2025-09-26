@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:khorchapati/expenses.dart";
+import "package:khorchapati/widgets/expenses/expenses.dart";
 
 void main() {
   return runApp(Khorchapati());
