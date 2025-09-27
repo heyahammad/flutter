@@ -45,11 +45,14 @@ class _Expenses extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text('ei dekh'),
-        Expanded(child: ListExpenses(expenses: _registeredList)),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          Text('ei dekh'),
+          Expanded(child: ListExpenses(expenses: _registeredList)),
+        ],
+      ),
     );
   }
 }
