@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:khorchapati/widgets/expenses/addexpense.dart';
 import 'package:khorchapati/widgets/expenses/listexpenses.dart';
 import 'package:khorchapati/model/expense.dart';
 
@@ -43,15 +44,35 @@ class _Expenses extends State<Expenses> {
     ),
   ];
 
+  void _addExpense() {
+    setState(() {
+      showModalBottomSheet(
+        context: context,
+        builder: (ctx) {
+          return Addexpense();
+        },
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Text('ei dekh'),
-          Expanded(child: ListExpenses(expenses: _registeredList)),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Khorchapati', textAlign: TextAlign.left),
+        centerTitle: false,
+        actions: [
+          IconButton(onPressed: () => _addExpense(), icon: Icon(Icons.add)),
         ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Text('ei dekh'),
+            Expanded(child: ListExpenses(expenses: _registeredList)),
+          ],
+        ),
       ),
     );
   }

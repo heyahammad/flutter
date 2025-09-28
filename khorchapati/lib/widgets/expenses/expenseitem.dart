@@ -8,18 +8,6 @@ class Expenseitem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Icon icon;
-    if (expense.category == Category.work) {
-      icon = Icon(Icons.work);
-    } else if (expense.category == Category.food) {
-      icon = Icon(Icons.fastfood);
-    } else if (expense.category == Category.leisure) {
-      icon = Icon(Icons.movie);
-    } else if (expense.category == Category.travel) {
-      icon = Icon(Icons.flight);
-    } else {
-      icon = Icon(Icons.question_mark);
-    }
     return Card(
       color: Colors.amberAccent,
       child: Padding(
@@ -32,9 +20,9 @@ class Expenseitem extends StatelessWidget {
               children: [
                 Text('BDT ${expense.amount.toStringAsFixed(2)}'),
                 const Spacer(),
-                Icon(icon.icon),
+                Icon(categoryIcons[expense.category]?.icon),
                 const SizedBox(width: 5),
-                Text(expense.date.toString().split('.')[0]),
+                Text(expense.fomatteddata),
               ],
             ),
           ],

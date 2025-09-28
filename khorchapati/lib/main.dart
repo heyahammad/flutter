@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:khorchapati/widgets/expenses/expenses.dart";
+import "package:khorchapati/widgets/expenses.dart";
 
 void main() {
   return runApp(Khorchapati());
@@ -10,8 +10,6 @@ class Khorchapati extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(body: Container(child: Expenses())),
-    );
+    return MaterialApp(home: Expenses());
   }
 }
