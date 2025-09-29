@@ -122,6 +122,13 @@ class _Addexpense extends State<Addexpense> {
             child: Row(
               children: [
                 DropdownButton(
+                  focusColor: const Color.fromARGB(255, 255, 200, 0),
+                  value: category,
+                  style: GoogleFonts.poppins(
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  ),
                   items: [...Category.values]
                       .map(
                         (e) => DropdownMenuItem(
@@ -131,7 +138,9 @@ class _Addexpense extends State<Addexpense> {
                       )
                       .toList(),
                   onChanged: (ctx) {
-                    category = ctx as Category;
+                    setState(() {
+                      category = ctx;
+                    });
                   },
                 ),
                 Spacer(),
@@ -153,7 +162,7 @@ class _Addexpense extends State<Addexpense> {
                     ),
                   ),
                 ),
-                SizedBox(width: 5),
+                Spacer(),
                 ElevatedButton.icon(
                   onPressed: () {},
                   icon: Icon(Icons.done, color: Colors.black),
