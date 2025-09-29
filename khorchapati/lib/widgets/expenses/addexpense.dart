@@ -13,7 +13,7 @@ class _Addexpense extends State<Addexpense> {
   String? title;
   DateTime? date;
   double? amount;
-  Category? category;
+  Category? category = Category.food;
   void _date() {
     DateTime firstDate = DateTime.now().subtract(Duration(days: 365));
     DateTime lastDate = DateTime.now();
@@ -121,27 +121,42 @@ class _Addexpense extends State<Addexpense> {
             width: 300,
             child: Row(
               children: [
-                DropdownButton(
-                  focusColor: const Color.fromARGB(255, 255, 200, 0),
-                  value: category,
-                  style: GoogleFonts.poppins(
-                    color: Colors.black,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
+                Container(
+                  height: 40,
+                  width: 90,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: Colors.amberAccent,
+
+                    borderRadius: BorderRadius.circular(20),
                   ),
-                  items: [...Category.values]
-                      .map(
-                        (e) => DropdownMenuItem(
-                          value: e,
-                          child: Text(e.name.toString()),
-                        ),
-                      )
-                      .toList(),
-                  onChanged: (ctx) {
-                    setState(() {
-                      category = ctx;
-                    });
-                  },
+                  child: DropdownButton(
+                    value: category,
+                    underline: SizedBox(),
+
+                    style: GoogleFonts.poppins(
+                      color: Colors.black,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    icon: Icon(Icons.arrow_drop_down, color: Colors.black),
+
+                    dropdownColor: Colors.amberAccent,
+                    items: [...Category.values]
+                        .map(
+                          (e) => DropdownMenuItem(
+                            value: e,
+                            child: Text(e.name.toString()),
+                          ),
+                        )
+                        .toList(),
+                    onChanged: (ctx) {
+                      setState(() {
+                        category = ctx;
+                      });
+                    },
+                  ),
                 ),
                 Spacer(),
                 ElevatedButton(
@@ -149,6 +164,7 @@ class _Addexpense extends State<Addexpense> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 251, 231, 158),
                     shape: RoundedRectangleBorder(
+                      side: BorderSide(color: Colors.amberAccent, width: 1),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     shadowColor: Colors.transparent,
