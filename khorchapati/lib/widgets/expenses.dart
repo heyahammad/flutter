@@ -44,12 +44,18 @@ class _Expenses extends State<Expenses> {
     ),
   ];
 
-  void _addExpense() {
+  void _addEx(Expense expense) {
+    setState(() {
+      _registeredList.add(expense);
+    });
+  }
+
+  void _openAddOverlay() {
     setState(() {
       showModalBottomSheet(
         context: context,
         builder: (ctx) {
-          return Addexpense();
+          return Addexpense(onAddExpense: _addEx);
         },
       );
     });
@@ -62,7 +68,7 @@ class _Expenses extends State<Expenses> {
         title: const Text('Khorchapati', textAlign: TextAlign.left),
         centerTitle: false,
         actions: [
-          IconButton(onPressed: () => _addExpense(), icon: Icon(Icons.add)),
+          IconButton(onPressed: () => _openAddOverlay(), icon: Icon(Icons.add)),
         ],
       ),
       body: Padding(

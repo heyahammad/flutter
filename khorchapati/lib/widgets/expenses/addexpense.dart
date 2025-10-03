@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:khorchapati/model/expense.dart';
+import 'package:khorchapati/widgets/expenses.dart';
 
 class Addexpense extends StatefulWidget {
-  const Addexpense({super.key});
+  Addexpense({super.key, required this.onAddExpense});
+
+  final void Function(Expense expense)? onAddExpense;
 
   @override
   State<Addexpense> createState() => _Addexpense();
@@ -14,6 +17,7 @@ class _Addexpense extends State<Addexpense> {
   DateTime? date;
   double? amount;
   Category? category = Category.food;
+
   void _date() {
     DateTime firstDate = DateTime.now().subtract(Duration(days: 365));
     DateTime lastDate = DateTime.now();
@@ -22,13 +26,79 @@ class _Addexpense extends State<Addexpense> {
       initialDate: DateTime.now(),
       firstDate: firstDate,
       lastDate: lastDate,
-    );
+    ).then((value) {
+      setState(() {
+        date = value;
+      });
+    });
+  }
+
+  void submitexpense() {
+    if (title != null || amount != null || date != null || category != null) {
+      showDialog(
+        context: context,
+        builder: (ctx) {
+          return AlertDialog.adaptive(
+            title: Text('Success', style: GoogleFonts.poppins()),
+            content: Text(
+              'Expense added successfully',
+              style: GoogleFonts.poppins(),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(ctx);
+                  Navigator.pop(context);
+                },
+
+                child: Text(
+                  'OK',
+                  style: GoogleFonts.poppins(color: Colors.black),
+                ),
+              ),
+            ],
+          );
+        },
+      );
+      widget.onAddExpense!(
+        Expense(
+          title: title!,
+          amount: amount!,
+          date: date!,
+          category: category!,
+        ),
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (ctx) {
+          return AlertDialog.adaptive(
+            title: Text('Invalid Input', style: GoogleFonts.poppins()),
+            content: Text(
+              'Please fill all the fields',
+              style: GoogleFonts.poppins(),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(ctx);
+                },
+                child: Text(
+                  'OK',
+                  style: GoogleFonts.poppins(color: Colors.black),
+                ),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 600,
+      height: 400,
       width: 400,
 
       child: Column(
@@ -95,7 +165,7 @@ class _Addexpense extends State<Addexpense> {
                     cursorColor: Colors.black,
                     keyboardType: TextInputType.number,
                     onChanged: (val) {
-                      amount = val as double;
+                      amount = double.tryParse(val);
                     },
                   ),
                 ),
@@ -160,7 +230,9 @@ class _Addexpense extends State<Addexpense> {
                 ),
                 Spacer(),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 251, 231, 158),
                     shape: RoundedRectangleBorder(
@@ -180,7 +252,7 @@ class _Addexpense extends State<Addexpense> {
                 ),
                 Spacer(),
                 ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: submitexpense,
                   icon: Icon(Icons.done, color: Colors.black),
                   label: Text(
                     'Add',
