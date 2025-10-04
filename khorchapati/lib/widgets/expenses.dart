@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:khorchapati/widgets/expenses/addexpense.dart';
 import 'package:khorchapati/widgets/expenses/listexpenses.dart';
 import 'package:khorchapati/model/expense.dart';
@@ -50,6 +51,32 @@ class _Expenses extends State<Expenses> {
     });
   }
 
+  void _removeEX(Expense expense) {
+    int index = _registeredList.indexOf(expense);
+    setState(() {
+      _registeredList.remove(expense);
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Expense Deleted',
+          style: GoogleFonts.poppins(color: Colors.black),
+        ),
+        duration: Duration(seconds: 4),
+        backgroundColor: Colors.amberAccent,
+        action: SnackBarAction(
+          label: 'Undo',
+          textColor: Colors.black,
+          onPressed: () {
+            setState(() {
+              _registeredList.insert(index, expense);
+            });
+          },
+        ),
+      ),
+    );
+  }
+
   void _openAddOverlay() {
     setState(() {
       showModalBottomSheet(
@@ -63,6 +90,17 @@ class _Expenses extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
+    Widget content = const Center(
+      child: Text('No expenses found. Start adding some!'),
+    );
+
+    if (_registeredList.isNotEmpty) {
+      content = ListExpenses(
+        expenses: _registeredList,
+        onRemoveExpense: _removeEX,
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Khorchapati', textAlign: TextAlign.left),
@@ -75,8 +113,8 @@ class _Expenses extends State<Expenses> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            Text('ei dekh'),
-            Expanded(child: ListExpenses(expenses: _registeredList)),
+            Text('Expense Till Now'),
+            Expanded(child: content),
           ],
         ),
       ),
