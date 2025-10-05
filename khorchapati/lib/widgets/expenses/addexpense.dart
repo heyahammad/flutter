@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:khorchapati/model/expense.dart';
-import 'package:khorchapati/widgets/expenses.dart';
 
 class Addexpense extends StatefulWidget {
-  Addexpense({super.key, required this.onAddExpense});
+  const Addexpense({super.key, required this.onAddExpense});
 
   final void Function(Expense expense)? onAddExpense;
 
