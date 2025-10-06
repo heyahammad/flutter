@@ -10,6 +10,6 @@ class Khorchapati extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: Expenses());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: Expenses());
   }
 }

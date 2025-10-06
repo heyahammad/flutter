@@ -103,20 +103,27 @@ class _Expenses extends State<Expenses> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Khorchapati', textAlign: TextAlign.left),
+        title: Text(
+          'KHORCHAPATI',
+          textAlign: TextAlign.left,
+          style: GoogleFonts.poppins(
+            color: Colors.black,
+            fontWeight: FontWeight.w700,
+            fontSize: 30,
+          ),
+        ),
+        backgroundColor: Colors.amberAccent,
         centerTitle: false,
         actions: [
-          IconButton(onPressed: () => _openAddOverlay(), icon: Icon(Icons.add)),
+          IconButton(
+            onPressed: () => _openAddOverlay(),
+            icon: Icon(Icons.add, color: Colors.black),
+          ),
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Text('Expense Till Now'),
-            Expanded(child: content),
-          ],
-        ),
+        padding: const EdgeInsets.all(10.0),
+        child: Column(children: [Expanded(child: content)]),
       ),
     );
   }
