@@ -103,14 +103,20 @@ class _Expenses extends State<Expenses> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'KHORCHAPATI',
-          textAlign: TextAlign.left,
-          style: GoogleFonts.poppins(
-            color: Colors.black,
-            fontWeight: FontWeight.w700,
-            fontSize: 30,
-          ),
+        title: Row(
+          children: [
+            Icon(Icons.table_rows_outlined, color: Colors.black, size: 30),
+            SizedBox(width: 2),
+            Text(
+              'KHORCHAPATI',
+              textAlign: TextAlign.left,
+              style: GoogleFonts.poppins(
+                color: Colors.black,
+                fontWeight: FontWeight.w700,
+                fontSize: 30,
+              ),
+            ),
+          ],
         ),
         backgroundColor: Colors.amberAccent,
         centerTitle: false,
