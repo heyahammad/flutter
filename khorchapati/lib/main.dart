@@ -10,6 +10,16 @@ class Khorchapati extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: Expenses());
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        useMaterial3: true,
+        cardTheme: CardThemeData(
+          margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        ),
+      ),
+
+      home: Expenses(),
+    );
   }
 }

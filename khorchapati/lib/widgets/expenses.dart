@@ -127,9 +127,11 @@ class _Expenses extends State<Expenses> {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(children: [Expanded(child: content)]),
+      body: Column(
+        children: [
+          SizedBox(height: 8),
+          Expanded(child: content),
+        ],
       ),
     );
   }
