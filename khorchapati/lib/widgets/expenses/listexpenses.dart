@@ -19,6 +19,17 @@ class ListExpenses extends StatelessWidget {
         onDismissed: (direction) {
           onRemoveExpense(expenses[index]);
         },
+        background: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: Colors.red,
+          ),
+          margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          padding: EdgeInsets.only(right: 20),
+          alignment: Alignment.centerRight,
+          child: Icon(Icons.delete, color: Colors.white, size: 40),
+        ),
+        direction: DismissDirection.endToStart,
         key: ValueKey(expenses[index]),
         child: Expenseitem(expenses[index]),
       ),

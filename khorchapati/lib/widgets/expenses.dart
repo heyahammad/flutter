@@ -12,38 +12,7 @@ class Expenses extends StatefulWidget {
 }
 
 class _Expenses extends State<Expenses> {
-  final List<Expense> _registeredList = [
-    Expense(
-      title: 'food',
-      date: DateTime.now(),
-      amount: 2500,
-      category: Category.food,
-    ),
-    Expense(
-      title: 'Dekhlam',
-      date: DateTime.now(),
-      amount: 1000,
-      category: Category.leisure,
-    ),
-    Expense(
-      title: 'Ghurlam',
-      date: DateTime.now(),
-      amount: 1500,
-      category: Category.travel,
-    ),
-    Expense(
-      title: 'Korlam',
-      date: DateTime.now(),
-      amount: 3500,
-      category: Category.work,
-    ),
-    Expense(
-      title: 'Khailam',
-      date: DateTime.now(),
-      amount: 500,
-      category: Category.food,
-    ),
-  ];
+  final List<Expense> _registeredList = [];
 
   void _addEx(Expense expense) {
     setState(() {
@@ -105,25 +74,23 @@ class _Expenses extends State<Expenses> {
       appBar: AppBar(
         title: Row(
           children: [
-            Icon(Icons.table_rows_outlined, color: Colors.black, size: 30),
+            Icon(Icons.table_rows_outlined, size: 30),
             SizedBox(width: 2),
             Text(
               'KHORCHAPATI',
               textAlign: TextAlign.left,
               style: GoogleFonts.poppins(
-                color: Colors.black,
                 fontWeight: FontWeight.w700,
                 fontSize: 30,
               ),
             ),
           ],
         ),
-        backgroundColor: Colors.amberAccent,
         centerTitle: false,
         actions: [
           IconButton(
             onPressed: () => _openAddOverlay(),
-            icon: Icon(Icons.add, color: Colors.black),
+            icon: Icon(Icons.add, size: 30),
           ),
         ],
       ),

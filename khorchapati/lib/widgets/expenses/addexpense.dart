@@ -33,7 +33,7 @@ class _Addexpense extends State<Addexpense> {
   }
 
   void submitexpense() {
-    if (title != null || amount != null || date != null || category != null) {
+    if (title != null && amount != null && date != null && category != null) {
       showDialog(
         context: context,
         builder: (ctx) {
@@ -107,25 +107,7 @@ class _Addexpense extends State<Addexpense> {
             height: 50,
             width: 300,
             child: TextField(
-              decoration: InputDecoration(
-                label: Text('Title'),
-                labelStyle: GoogleFonts.poppins(
-                  color: Colors.black,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: BorderSide(
-                    color: const Color.fromARGB(255, 0, 0, 0),
-                    width: 1,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: BorderSide(color: Colors.black, width: 2),
-                ),
-              ),
+              decoration: InputDecoration(label: Text('Title')),
               cursorColor: Colors.black,
               onChanged: (val) {
                 title = val;
@@ -133,7 +115,7 @@ class _Addexpense extends State<Addexpense> {
             ),
           ),
           SizedBox(height: 20),
-          Container(
+          SizedBox(
             height: 50,
             width: 300,
             child: Row(
@@ -144,24 +126,7 @@ class _Addexpense extends State<Addexpense> {
                     decoration: InputDecoration(
                       label: Text('Amount'),
                       prefixText: '৳ ',
-                      labelStyle: GoogleFonts.poppins(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(
-                          color: const Color.fromARGB(255, 0, 0, 0),
-                          width: 1,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(color: Colors.black, width: 2),
-                      ),
                     ),
-                    cursorColor: Colors.black,
                     keyboardType: TextInputType.number,
                     onChanged: (val) {
                       amount = double.tryParse(val);
@@ -173,14 +138,12 @@ class _Addexpense extends State<Addexpense> {
                   'Select Date',
                   style: GoogleFonts.poppins(
                     fontSize: 15,
-                    color: Colors.black,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
                 IconButton(
                   onPressed: () => _date(),
                   icon: Icon(Icons.calendar_month),
-                  color: Colors.black,
                 ),
               ],
             ),
