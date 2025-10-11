@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:khorchapati/widgets/chart/chart.dart';
 import 'package:khorchapati/widgets/expenses/addexpense.dart';
 import 'package:khorchapati/widgets/expenses/listexpenses.dart';
 import 'package:khorchapati/model/expense.dart';
@@ -96,6 +97,8 @@ class _Expenses extends State<Expenses> {
       ),
       body: Column(
         children: [
+          SizedBox(height: 8),
+          Chart(expenses: _registeredList),
           SizedBox(height: 8),
           Expanded(child: content),
         ],

@@ -96,9 +96,10 @@ class _Addexpense extends State<Addexpense> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.widthOf(context);
     return SizedBox(
       height: 400,
-      width: 400,
+      width: width,
 
       child: Column(
         children: [

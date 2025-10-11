@@ -1,9 +1,13 @@
 import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
 import "package:khorchapati/widgets/expenses.dart";
+import 'package:flutter/services.dart';
 
 void main() {
-  return runApp(Khorchapati());
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]).then((fn) => runApp(Khorchapati()));
 }
 
 var kolorScheme = ColorScheme.fromSeed(seedColor: Colors.amberAccent);
@@ -89,7 +93,7 @@ class Khorchapati extends StatelessWidget {
           ),
         ),
       ),
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.dark,
       home: Expenses(),
     );
   }
