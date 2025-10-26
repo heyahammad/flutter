@@ -8,13 +8,6 @@ import 'package:rannaghor/provider/meals_provider.dart';
 import 'package:rannaghor/provider/favourite_provider.dart';
 import 'package:rannaghor/provider/filter_provider.dart';
 
-const initialFilters = {
-  Filter.glutenFree: false,
-  Filter.lactoseFree: false,
-  Filter.vegan: false,
-  Filter.vegetarian: false,
-};
-
 class TabScreen extends ConsumerStatefulWidget {
   const TabScreen({super.key});
   @override
@@ -23,8 +16,6 @@ class TabScreen extends ConsumerStatefulWidget {
 
 class _TabScreenState extends ConsumerState<TabScreen> {
   int screenIndex = 0;
-
-  Map<Filter, bool> availblefilter = initialFilters;
 
   // void showMessage(String msg) {
   //   final scaffoldMessenger = ScaffoldMessenger.of(context);
@@ -57,14 +48,9 @@ class _TabScreenState extends ConsumerState<TabScreen> {
   void _screenChange(String identifier) async {
     Navigator.of(context).pop();
     if (identifier == 'filters') {
-      final result = await Navigator.of(context).push<Map<Filter, bool>>(
-        MaterialPageRoute(
-          builder: (ctx) => FilterScreen(currentFilter: availblefilter),
-        ),
+      await Navigator.of(context).push<Map<Filter, bool>>(
+        MaterialPageRoute(builder: (ctx) => FilterScreen()),
       );
-      setState(() {
-        availblefilter = result ?? initialFilters;
-      });
     }
   }
 
@@ -76,23 +62,8 @@ class _TabScreenState extends ConsumerState<TabScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final listMeal = ref.watch(meals);
+    final availableMeals = ref.watch(filteredMealsProvider);
 
-    final availableMeals = listMeal.where((meal) {
-      if (!meal.isGlutenFree && availblefilter[Filter.glutenFree]!) {
-        return false;
-      }
-      if (!meal.isLactoseFree && availblefilter[Filter.lactoseFree]!) {
-        return false;
-      }
-      if (!meal.isVegan && availblefilter[Filter.vegan]!) {
-        return false;
-      }
-      if (!meal.isVegetarian && availblefilter[Filter.vegetarian]!) {
-        return false;
-      }
-      return true;
-    }).toList();
     Widget activeScreen = Categories(
       // toogleFavouriteMeal: _toogleFavouriteMeal,
       mealFromFilter: availableMeals,
