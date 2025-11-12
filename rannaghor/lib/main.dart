@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const Rannaghor());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Rannaghor extends StatefulWidget {
+  const Rannaghor({super.key});
+  @override
+  State<Rannaghor> createState() => _Rannaghor();
+}
 
+class _Rannaghor extends State<Rannaghor> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'RannaGhor');
+    return MaterialApp(home: Center(child: Text('hello')));
   }
 }

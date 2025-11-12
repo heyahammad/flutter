@@ -93,7 +93,7 @@ class Khorchapati extends StatelessWidget {
           ),
         ),
       ),
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.dark,
       home: Expenses(),
     );
   }
