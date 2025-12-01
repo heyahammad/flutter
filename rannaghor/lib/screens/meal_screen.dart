@@ -11,7 +11,7 @@ class MealScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(meal.title)),
+      appBar: AppBar(title: Text('Meal Details')),
       body: Stack(
         children: [
           FadeInImage(
@@ -40,6 +40,53 @@ class MealScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 10),
+                  Text(
+                    meal.title,
+                    maxLines: 1,
+                    style: GoogleFonts.poppins(
+                      color: Theme.of(context).colorScheme.onBackground,
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(Icons.schedule, color: Colors.white),
+                          SizedBox(width: 8),
+                          Text(
+                            '${meal.duration} Minute',
+                            style: GoogleFonts.poppins(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Icon(Icons.work, color: Colors.white),
+                          SizedBox(width: 8),
+                          Text(
+                            meal.complexity.name,
+                            style: GoogleFonts.poppins(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Icon(Icons.attach_money, color: Colors.white),
+                          SizedBox(width: 8),
+                          Text(
+                            meal.affordability.name,
+                            style: GoogleFonts.poppins(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10),
                   Card(
                     color: Theme.of(context).canvasColor.withOpacity(0.4),
                     elevation: 0,
@@ -115,15 +162,30 @@ class MealScreen extends StatelessWidget {
                             ),
                           ),
 
-                          for (int i = 0; i < meal.steps.length; i++)
-                            Text(
-                              '${i + 1}. ${meal.steps[i]}',
-                              style: GoogleFonts.poppins(
-                                color: Theme.of(
-                                  context,
-                                ).colorScheme.onBackground,
-                                fontSize: 16,
-                              ),
+                          for (final s in meal.steps)
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Icon(
+                                  Icons.arrow_right,
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onBackground,
+                                ),
+                                SizedBox(width: 4),
+                                Expanded(
+                                  child: Text(
+                                    s,
+                                    textAlign: TextAlign.left,
+                                    style: GoogleFonts.poppins(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.onBackground,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                         ],
                       ),
