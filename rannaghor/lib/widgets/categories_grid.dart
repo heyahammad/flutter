@@ -1,14 +1,15 @@
-import 'package:flutter/material.dart ';
+import 'package:flutter/material.dart';
 import 'package:rannaghor/models/category.dart';
 
 class CategoriesGrid extends StatelessWidget {
   final Category category;
-  const CategoriesGrid(this.category, {super.key});
+  final void Function() nav;
+  const CategoriesGrid({super.key, required this.category, required this.nav});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () => nav(),
       splashColor: Theme.of(context).colorScheme.primary,
       borderRadius: BorderRadius.circular(16),
       child: Container(
