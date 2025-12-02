@@ -28,6 +28,7 @@ class CategoriesGrid extends StatelessWidget {
         child: Text(
           category.title,
           style: Theme.of(context).textTheme.titleLarge!.copyWith(
+            fontSize: 20,
             color: Theme.of(context).colorScheme.onBackground,
           ),
         ),

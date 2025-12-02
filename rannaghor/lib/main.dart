@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rannaghor/data/dummy_data.dart';
-import 'package:rannaghor/screens/categories.dart';
-import 'package:rannaghor/screens/meals.dart';
+import 'package:rannaghor/screens/tab_screen.dart';
 
 final theme = ThemeData(
   useMaterial3: true,
@@ -11,7 +9,7 @@ final theme = ThemeData(
     seedColor: const Color.fromARGB(255, 226, 131, 68),
   ),
 
-  textTheme: GoogleFonts.latoTextTheme(),
+  textTheme: GoogleFonts.poppinsTextTheme(),
 );
 
 void main() {
@@ -27,6 +25,6 @@ class Rannaghor extends StatefulWidget {
 class _Rannaghor extends State<Rannaghor> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(theme: theme, title: 'RannaGhor', home: Categories());
+    return MaterialApp(theme: theme, title: 'RannaGhor', home: TabScreen());
   }
 }

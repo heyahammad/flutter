@@ -24,159 +24,108 @@ class MealScreen extends StatelessWidget {
             color: Colors.black54,
           ),
           SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                children: [
-                  Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  children: [
+                    Container(
+                      height: 150,
+                      decoration: BoxDecoration(shape: BoxShape.circle),
+                      clipBehavior: Clip.hardEdge,
+                      child: FadeInImage(
+                        placeholder: MemoryImage(kTransparentImage),
+                        image: NetworkImage(meal.imageUrl),
+                      ),
                     ),
-                    elevation: 2,
-                    clipBehavior: Clip.hardEdge,
-                    child: FadeInImage(
-                      placeholder: MemoryImage(kTransparentImage),
-                      image: NetworkImage(meal.imageUrl),
+                    const SizedBox(height: 10),
+                    Text(
+                      meal.title,
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      style: GoogleFonts.poppins(
+                        color: Theme.of(context).colorScheme.onBackground,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    meal.title,
-                    maxLines: 1,
-                    style: GoogleFonts.poppins(
-                      color: Theme.of(context).colorScheme.onBackground,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Row(
-                        children: [
-                          Icon(Icons.schedule, color: Colors.white),
-                          SizedBox(width: 8),
-                          Text(
-                            '${meal.duration} Minute',
-                            style: GoogleFonts.poppins(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Icon(Icons.work, color: Colors.white),
-                          SizedBox(width: 8),
-                          Text(
-                            meal.complexity.name,
-                            style: GoogleFonts.poppins(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Icon(Icons.attach_money, color: Colors.white),
-                          SizedBox(width: 8),
-                          Text(
-                            meal.affordability.name,
-                            style: GoogleFonts.poppins(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 10),
-                  Card(
-                    color: Theme.of(context).canvasColor.withOpacity(0.4),
-                    elevation: 0,
-                    child: Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.circular(15),
-                        border: Border.all(
-                          color: Theme.of(context).colorScheme.onBackground,
-                          width: 2,
-                        ),
-                      ),
-                      child: Column(
-                        children: [
-                          Text(
-                            'Ingredients',
-                            style: GoogleFonts.poppins(
-                              color: Theme.of(context).colorScheme.onBackground,
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(Icons.schedule, color: Colors.white),
+                            SizedBox(width: 8),
+                            Text(
+                              '${meal.duration} Minute',
+                              style: GoogleFonts.poppins(color: Colors.white),
                             ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Icon(Icons.work, color: Colors.white),
+                            SizedBox(width: 8),
+                            Text(
+                              meal.complexity.name,
+                              style: GoogleFonts.poppins(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Icon(Icons.attach_money, color: Colors.white),
+                            SizedBox(width: 8),
+                            Text(
+                              meal.affordability.name,
+                              style: GoogleFonts.poppins(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                    Card(
+                      color: Theme.of(context).canvasColor.withOpacity(0.4),
+                      elevation: 0,
+                      child: Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(
+                            color: Theme.of(context).colorScheme.onBackground,
+                            width: 2,
                           ),
-                          for (final ing in meal.ingredients)
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.check,
-                                  color: Theme.of(
-                                    context,
-                                  ).colorScheme.onBackground,
-                                ),
-                                SizedBox(width: 4),
-                                Text(
-                                  ing,
-                                  style: GoogleFonts.poppins(
+                        ),
+                        child: Column(
+                          children: [
+                            Text(
+                              'Ingredients',
+                              style: GoogleFonts.poppins(
+                                color: Theme.of(
+                                  context,
+                                ).colorScheme.onBackground,
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            for (final ing in meal.ingredients)
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.check,
                                     color: Theme.of(
                                       context,
                                     ).colorScheme.onBackground,
-                                    fontSize: 16,
                                   ),
-                                ),
-                              ],
-                            ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Card(
-                    color: Theme.of(context).canvasColor.withOpacity(0.4),
-                    elevation: 0,
-                    child: Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.circular(15),
-                        border: Border.all(
-                          color: Theme.of(context).colorScheme.onBackground,
-                          width: 2,
-                        ),
-                      ),
-                      child: Column(
-                        children: [
-                          Text(
-                            'Steps',
-                            style: GoogleFonts.poppins(
-                              color: Theme.of(context).colorScheme.onBackground,
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-
-                          for (final s in meal.steps)
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Icon(
-                                  Icons.arrow_right,
-                                  color: Theme.of(
-                                    context,
-                                  ).colorScheme.onBackground,
-                                ),
-                                SizedBox(width: 4),
-                                Expanded(
-                                  child: Text(
-                                    s,
-                                    textAlign: TextAlign.left,
+                                  SizedBox(width: 4),
+                                  Text(
+                                    ing,
                                     style: GoogleFonts.poppins(
                                       color: Theme.of(
                                         context,
@@ -184,14 +133,73 @@ class MealScreen extends StatelessWidget {
                                       fontSize: 16,
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                        ],
+                                ],
+                              ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                    SizedBox(height: 10),
+                    Card(
+                      color: Theme.of(context).canvasColor.withOpacity(0.4),
+                      elevation: 0,
+                      child: Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(
+                            color: Theme.of(context).colorScheme.onBackground,
+                            width: 2,
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            Text(
+                              'Steps',
+                              style: GoogleFonts.poppins(
+                                color: Theme.of(
+                                  context,
+                                ).colorScheme.onBackground,
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+
+                            for (final s in meal.steps)
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Icon(
+                                    Icons.arrow_circle_right_outlined,
+                                    size: 30,
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.onBackground,
+                                  ),
+                                  SizedBox(width: 6),
+                                  Expanded(
+                                    child: Text(
+                                      s,
+                                      textAlign: TextAlign.left,
+                                      style: GoogleFonts.poppins(
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.onBackground,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
