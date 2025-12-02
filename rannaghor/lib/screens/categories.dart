@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:rannaghor/data/dummy_data.dart';
-import 'package:rannaghor/models/meal.dart';
 import 'package:rannaghor/models/category.dart';
 import 'package:rannaghor/screens/meals.dart';
+import 'package:rannaghor/models/meal.dart';
 import 'package:rannaghor/widgets/categories_grid.dart';
 
 class Categories extends StatelessWidget {
-  const Categories({super.key});
+  const Categories({super.key, required this.toogleFavouriteMeal});
+
+  final Function(Meal meal) toogleFavouriteMeal;
 
   void selectCategory(BuildContext context, Category category) {
     final filteredMeals = dummyMeals
@@ -15,8 +17,11 @@ class Categories extends StatelessWidget {
 
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (ctx) =>
-            MealsScreen(title: category.title, meals: filteredMeals),
+        builder: (ctx) => MealsScreen(
+          title: category.title,
+          meals: filteredMeals,
+          toogleFavouriteMeal: toogleFavouriteMeal,
+        ),
       ),
     );
   }
@@ -24,7 +29,7 @@ class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Categories')),
+      // appBar: AppBar(title: Text('Categories')),
       body: GridView(
         padding: const EdgeInsets.all(16),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

@@ -5,13 +5,29 @@ import 'package:rannaghor/models/meal.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class MealScreen extends StatelessWidget {
-  const MealScreen({super.key, required this.meal});
+  const MealScreen({
+    super.key,
+    required this.meal,
+    required this.toogleFavouriteMeal,
+  });
   final Meal meal;
+
+  final Function(Meal meal) toogleFavouriteMeal;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Meal Details')),
+      appBar: AppBar(
+        title: Text('Meal Details'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              toogleFavouriteMeal(meal);
+            },
+            icon: Icon(Icons.star),
+          ),
+        ],
+      ),
       body: Stack(
         children: [
           FadeInImage(
@@ -173,8 +189,8 @@ class MealScreen extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Icon(
-                                    Icons.arrow_circle_right_outlined,
-                                    size: 30,
+                                    Icons.arrow_right,
+                                    size: 20,
                                     color: Theme.of(
                                       context,
                                     ).colorScheme.onBackground,

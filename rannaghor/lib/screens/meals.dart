@@ -5,10 +5,16 @@ import 'package:rannaghor/models/meal.dart';
 import 'package:rannaghor/screens/meal_item.dart';
 
 class MealsScreen extends StatelessWidget {
-  const MealsScreen({super.key, required this.title, required this.meals});
+  const MealsScreen({
+    super.key,
+    required this.title,
+    required this.meals,
+    required this.toogleFavouriteMeal,
+  });
 
   final String title;
   final List<Meal> meals;
+  final Function(Meal meal) toogleFavouriteMeal;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +35,10 @@ class MealsScreen extends StatelessWidget {
     if (meals.isNotEmpty) {
       content = Center(
         child: ListView.builder(
-          itemBuilder: (ctx, index) => MealItem(meal: meals[index]),
+          itemBuilder: (ctx, index) => MealItem(
+            meal: meals[index],
+            toogleFavouriteMeal: toogleFavouriteMeal,
+          ),
           itemCount: meals.length,
         ),
       );
