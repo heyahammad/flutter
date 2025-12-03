@@ -5,6 +5,13 @@ import 'package:rannaghor/screens/meals.dart';
 import 'package:rannaghor/models/meal.dart';
 import 'package:rannaghor/screens/filter.dart';
 
+const initialFilters = {
+  Filter.glutenFree: false,
+  Filter.lactoseFree: false,
+  Filter.vegan: false,
+  Filter.vegetarian: false,
+};
+
 class TabScreen extends StatefulWidget {
   const TabScreen({super.key});
   @override
@@ -13,6 +20,8 @@ class TabScreen extends StatefulWidget {
 
 class _TabScreenState extends State<TabScreen> {
   int screenIndex = 0;
+
+  Map<Filter, bool> availblefilter = {};
 
   List<Meal> favouriteMeals = [];
 
@@ -50,8 +59,7 @@ class _TabScreenState extends State<TabScreen> {
       final result = await Navigator.of(context).push<Map<Filter, bool>>(
         MaterialPageRoute(builder: (ctx) => FilterScreen()),
       );
-
-      print(result);
+      availblefilter = result ?? initialFilters;
     }
   }
 
