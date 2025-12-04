@@ -6,12 +6,17 @@ import 'package:rannaghor/models/meal.dart';
 import 'package:rannaghor/widgets/categories_grid.dart';
 
 class Categories extends StatelessWidget {
-  const Categories({super.key, required this.toogleFavouriteMeal});
+  const Categories({
+    super.key,
+    required this.toogleFavouriteMeal,
+    required this.mealFromFilter,
+  });
 
   final Function(Meal meal) toogleFavouriteMeal;
+  final List<Meal> mealFromFilter;
 
   void selectCategory(BuildContext context, Category category) {
-    final filteredMeals = dummyMeals
+    final filteredMeals = mealFromFilter
         .where((meal) => meal.categories.contains(category.id))
         .toList();
 

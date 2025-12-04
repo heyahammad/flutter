@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rannaghor/data/dummy_data.dart';
 import 'package:rannaghor/screens/categories.dart';
 import 'package:rannaghor/screens/main_drawer.dart';
 import 'package:rannaghor/screens/meals.dart';
@@ -21,7 +22,7 @@ class TabScreen extends StatefulWidget {
 class _TabScreenState extends State<TabScreen> {
   int screenIndex = 0;
 
-  Map<Filter, bool> availblefilter = {};
+  Map<Filter, bool> availblefilter = initialFilters;
 
   List<Meal> favouriteMeals = [];
 
@@ -57,9 +58,13 @@ class _TabScreenState extends State<TabScreen> {
     Navigator.of(context).pop();
     if (identifier == 'filters') {
       final result = await Navigator.of(context).push<Map<Filter, bool>>(
-        MaterialPageRoute(builder: (ctx) => FilterScreen()),
+        MaterialPageRoute(
+          builder: (ctx) => FilterScreen(currentFilter: availblefilter),
+        ),
       );
-      availblefilter = result ?? initialFilters;
+      setState(() {
+        availblefilter = result ?? initialFilters;
+      });
     }
   }
 
@@ -71,7 +76,25 @@ class _TabScreenState extends State<TabScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Widget activeScreen = Categories(toogleFavouriteMeal: _toogleFavouriteMeal);
+    final availableMeals = dummyMeals.where((meal) {
+      if (!meal.isGlutenFree && availblefilter[Filter.glutenFree]!) {
+        return false;
+      }
+      if (!meal.isLactoseFree && availblefilter[Filter.lactoseFree]!) {
+        return false;
+      }
+      if (!meal.isVegan && availblefilter[Filter.vegan]!) {
+        return false;
+      }
+      if (!meal.isVegetarian && availblefilter[Filter.vegetarian]!) {
+        return false;
+      }
+      return true;
+    }).toList();
+    Widget activeScreen = Categories(
+      toogleFavouriteMeal: _toogleFavouriteMeal,
+      mealFromFilter: availableMeals,
+    );
 
     if (screenIndex == 1) {
       activeScreen = MealsScreen(
