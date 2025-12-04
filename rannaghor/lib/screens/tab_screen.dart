@@ -5,6 +5,8 @@ import 'package:rannaghor/screens/main_drawer.dart';
 import 'package:rannaghor/screens/meals.dart';
 import 'package:rannaghor/models/meal.dart';
 import 'package:rannaghor/screens/filter.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rannaghor/provider/meals_provider.dart';
 
 const initialFilters = {
   Filter.glutenFree: false,
@@ -13,13 +15,13 @@ const initialFilters = {
   Filter.vegetarian: false,
 };
 
-class TabScreen extends StatefulWidget {
+class TabScreen extends ConsumerStatefulWidget {
   const TabScreen({super.key});
   @override
-  State<TabScreen> createState() => _TabScreenState();
+  ConsumerState<TabScreen> createState() => _TabScreenState();
 }
 
-class _TabScreenState extends State<TabScreen> {
+class _TabScreenState extends ConsumerState<TabScreen> {
   int screenIndex = 0;
 
   Map<Filter, bool> availblefilter = initialFilters;
@@ -76,7 +78,8 @@ class _TabScreenState extends State<TabScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final availableMeals = dummyMeals.where((meal) {
+    final listMeal = ref.watch(meals);
+    final availableMeals = listMeal.where((meal) {
       if (!meal.isGlutenFree && availblefilter[Filter.glutenFree]!) {
         return false;
       }
