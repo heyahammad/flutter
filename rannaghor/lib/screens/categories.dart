@@ -8,11 +8,11 @@ import 'package:rannaghor/widgets/categories_grid.dart';
 class Categories extends StatelessWidget {
   const Categories({
     super.key,
-    required this.toogleFavouriteMeal,
+    // required this.toogleFavouriteMeal,
     required this.mealFromFilter,
   });
 
-  final Function(Meal meal) toogleFavouriteMeal;
+  // final Function(Meal meal) toogleFavouriteMeal;
   final List<Meal> mealFromFilter;
 
   void selectCategory(BuildContext context, Category category) {
@@ -25,7 +25,7 @@ class Categories extends StatelessWidget {
         builder: (ctx) => MealsScreen(
           title: category.title,
           meals: filteredMeals,
-          toogleFavouriteMeal: toogleFavouriteMeal,
+          // toogleFavouriteMeal: toogleFavouriteMeal,
         ),
       ),
     );

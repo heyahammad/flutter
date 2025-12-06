@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rannaghor/data/dummy_data.dart';
 import 'package:rannaghor/screens/categories.dart';
 import 'package:rannaghor/screens/main_drawer.dart';
 import 'package:rannaghor/screens/meals.dart';
@@ -7,6 +6,7 @@ import 'package:rannaghor/models/meal.dart';
 import 'package:rannaghor/screens/filter.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rannaghor/provider/meals_provider.dart';
+import 'package:rannaghor/provider/favourite_provider.dart';
 
 const initialFilters = {
   Filter.glutenFree: false,
@@ -26,8 +26,6 @@ class _TabScreenState extends ConsumerState<TabScreen> {
 
   Map<Filter, bool> availblefilter = initialFilters;
 
-  List<Meal> favouriteMeals = [];
-
   void showMessage(String msg) {
     final scaffoldMessenger = ScaffoldMessenger.of(context);
     scaffoldMessenger.clearSnackBars();
@@ -40,21 +38,21 @@ class _TabScreenState extends ConsumerState<TabScreen> {
     );
   }
 
-  void _toogleFavouriteMeal(Meal meal) {
-    final isExisting = favouriteMeals.contains(meal);
+  // void _toogleFavouriteMeal(Meal meal) {
+  //   final isExisting = favouriteMeals.contains(meal);
 
-    if (isExisting) {
-      showMessage('Remove from favourites!');
-      setState(() {
-        favouriteMeals.remove(meal);
-      });
-    } else {
-      showMessage('Added to favourites!');
-      setState(() {
-        favouriteMeals.add(meal);
-      });
-    }
-  }
+  //   if (isExisting) {
+  //     showMessage('Remove from favourites!');
+  //     setState(() {
+  //       favouriteMeals.remove(meal);
+  //     });
+  //   } else {
+  //     showMessage('Added to favourites!');
+  //     setState(() {
+  //       favouriteMeals.add(meal);
+  //     });
+  //   }
+  // }
 
   void _screenChange(String identifier) async {
     Navigator.of(context).pop();
@@ -79,6 +77,7 @@ class _TabScreenState extends ConsumerState<TabScreen> {
   @override
   Widget build(BuildContext context) {
     final listMeal = ref.watch(meals);
+
     final availableMeals = listMeal.where((meal) {
       if (!meal.isGlutenFree && availblefilter[Filter.glutenFree]!) {
         return false;
@@ -95,15 +94,16 @@ class _TabScreenState extends ConsumerState<TabScreen> {
       return true;
     }).toList();
     Widget activeScreen = Categories(
-      toogleFavouriteMeal: _toogleFavouriteMeal,
+      // toogleFavouriteMeal: _toogleFavouriteMeal,
       mealFromFilter: availableMeals,
     );
 
     if (screenIndex == 1) {
+      final favouriteMeals = ref.watch(favouriteMeal);
       activeScreen = MealsScreen(
         title: 'Your Favorites',
         meals: favouriteMeals,
-        toogleFavouriteMeal: _toogleFavouriteMeal,
+        // toogleFavouriteMeal: _toogleFavouriteMeal,
       );
     }
 

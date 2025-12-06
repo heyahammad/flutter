@@ -8,9 +8,9 @@ class MealItem extends StatelessWidget {
   const MealItem({
     super.key,
     required this.meal,
-    required this.toogleFavouriteMeal,
+    // required this.toogleFavouriteMeal,
   });
-  final Function(Meal meal) toogleFavouriteMeal;
+  // final Function(Meal meal) toogleFavouriteMeal;
   final Meal meal;
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class MealItem extends StatelessWidget {
           MaterialPageRoute(
             builder: (ctx) => MealScreen(
               meal: meal,
-              toogleFavouriteMeal: toogleFavouriteMeal,
+              // toogleFavouriteMeal: toogleFavouriteMeal,
             ),
           ),
         ),
