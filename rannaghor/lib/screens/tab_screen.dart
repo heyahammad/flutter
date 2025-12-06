@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:rannaghor/screens/categories.dart';
 import 'package:rannaghor/screens/main_drawer.dart';
 import 'package:rannaghor/screens/meals.dart';
-import 'package:rannaghor/models/meal.dart';
 import 'package:rannaghor/screens/filter.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rannaghor/provider/meals_provider.dart';
 import 'package:rannaghor/provider/favourite_provider.dart';
+import 'package:rannaghor/provider/filter_provider.dart';
 
 const initialFilters = {
   Filter.glutenFree: false,
@@ -26,17 +26,17 @@ class _TabScreenState extends ConsumerState<TabScreen> {
 
   Map<Filter, bool> availblefilter = initialFilters;
 
-  void showMessage(String msg) {
-    final scaffoldMessenger = ScaffoldMessenger.of(context);
-    scaffoldMessenger.clearSnackBars();
-    scaffoldMessenger.showSnackBar(
-      SnackBar(
-        content: Text(msg),
-        duration: Duration(seconds: 3),
-        action: SnackBarAction(label: 'Okay', onPressed: () {}),
-      ),
-    );
-  }
+  // void showMessage(String msg) {
+  //   final scaffoldMessenger = ScaffoldMessenger.of(context);
+  //   scaffoldMessenger.clearSnackBars();
+  //   scaffoldMessenger.showSnackBar(
+  //     SnackBar(
+  //       content: Text(msg),
+  //       duration: Duration(seconds: 3),
+  //       action: SnackBarAction(label: 'Okay', onPressed: () {}),
+  //     ),
+  //   );
+  // }
 
   // void _toogleFavouriteMeal(Meal meal) {
   //   final isExisting = favouriteMeals.contains(meal);
